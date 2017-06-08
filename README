@@ -1,0 +1,41 @@
+***********************************************************************
+			README
+***********************************************************************
+
+TRADITIONAL APPROACH : MPLS
+----------------------------
+
+For running the Quagga on MPLS, the kernel first needs to be updated using the steps below.
+
+1.Install Ubuntu 14.04 on virtual box installed on local desktop or server with console access. 
+This is required since upgrading kernel requires reboot operation.
+2.Download the kernel 4.4.0-31 from ìhttp://mirrors.kernel.org/î and 
+install using the command ìdpkgî. After installation, reboot the machine.
+3.Download the ExoGENIís image creation script and capture the local virtual machineís image. 
+For more details, refer to http://www.exogeni.net/2014/06/creating-a-custom-image-from-an-existing-virtual-machine/
+4.Upload the images and xml on public webserver and add the Name, URL and sha1 checksum in the file ì.flukes.propertyî.
+5.Restart the fluke application and VM(s) with updated kernel should show up in available images pool.
+
+Once the kernel is updated install Quagga using the install_Quagga.sh script.
+This script includes configurations for neighborship formation in OSPF and LDP.
+Chnage the router ID and neighbor IP address in the script depending on the topology
+and IP addresses used.
+
+Once the script is executed succcesully, MPLS-TE can be switched on and configured based
+as required.
+The steps for configuing MPLS TE can be found at: http://www.nongnu.org/quagga/docs/docs-info.html
+
+SDN APPROACH : PSEUDO MAC 
+--------------------------
+
+1. Design the topology as required.
+2. Instal OVS and RYU conroller on the exo-GENI nodes by using the scripts provided.(OVS_INSTALL.sh , RYU_CONTROLLER_INSTALL.sh)
+3. The controller_application.py python file is the code used for implmenating in our projet.
+4. the code base is written for a RYU based controller.
+5. Run the application using ryu-manager controller_application.py syntax.
+6. The paths and IP addresses defined in the controller application are for the topology used during the demo which can also be found in the power point presenattion attached.
+7. If a differnet topology or a differnet set of IP addresses are used necessary changes need to be made in the code.
+
+Project Website Link: https://goo.gl/SL6J9v
+Project Video Link: https://drive.google.com/open?id=0B6n3sKrNtZRgeG5sallLTTBWNTA
+
